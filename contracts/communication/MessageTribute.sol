@@ -18,6 +18,7 @@ contract MessageTribute is Controlled, MessageSigned {
     /**
      * @notice Set tribute of account
      * @param _value Required tribute value
+     * @param _beneficiary Account willing to receive payments
      */
     function setTribute(address _beneficiary, uint256 _value) external {
          setTribute(msg.sender, _beneficiary, _value);
@@ -25,6 +26,7 @@ contract MessageTribute is Controlled, MessageSigned {
 
     /**
      * @notice Set tribute of account using signature
+     * @param _beneficiary Account willing to receive payments
      * @param _value Required tribute value
      * @param _ttl TTL of message
      * @param _messageSignature signature of hashTributeMessage(_value, _ttl)
@@ -48,7 +50,7 @@ contract MessageTribute is Controlled, MessageSigned {
     /**
      * @notice Obtain required tribute to talk with `_of`
      * @param _of Account to lookup
-     * @return value of tribute
+     * @return payment address and value of tribute
      */
     function getTribute(address _of) external view
         returns (address, uint256)
@@ -59,6 +61,7 @@ contract MessageTribute is Controlled, MessageSigned {
 
     /**
      * @notice generates hash for signing tributes
+     * @param _beneficiary Account willing to receive payments
      * @param _value Required tribute value
      * @param _ttl TTL of message
      */
@@ -68,6 +71,7 @@ contract MessageTribute is Controlled, MessageSigned {
     /**
      * @notice Changes tribute of account
      * @param _of Account chaning tribute
+     * @param _beneficiary Account willing to receive payments
      * @param _value New tribute value
      */
     function setTribute(address _of, address _beneficiary, uint256 _value) internal {
